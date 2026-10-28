@@ -3,43 +3,358 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello</title>
+  <title>웨비나 신청 | AI 비즈니스 전략 세미나</title>
   <style>
     :root {
-      --bg: #f7f5f0;
-      --fg: #1c1c1c;
-      color-scheme: light dark;
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel-soft: #edf4ff;
+      --primary: #2d5bff;
+      --primary-dark: #1e42c7;
+      --accent: #8ec5ff;
+      --text: #1a1f2c;
+      --muted: #5f6b85;
+      --line: #dfe7f5;
+      --success: #0e9f6e;
+      --shadow: 0 24px 60px rgba(30, 66, 199, 0.12);
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1a1a1a;
-        --fg: #f2f0ea;
-      }
+
+    * {
+      box-sizing: border-box;
     }
+
     html, body {
-      height: 100%;
       margin: 0;
+      min-height: 100%;
+      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(142, 197, 255, 0.4), transparent 30%),
+        linear-gradient(135deg, #eef4ff 0%, #f9fbff 100%);
+      color: var(--text);
     }
+
     body {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      padding: 40px 20px;
     }
-    h1 {
-      font-size: clamp(2.5rem, 10vw, 6rem);
+
+    .page {
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(223, 231, 245, 0.8);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 52px 48px;
+      background: linear-gradient(160deg, #0f1b40 0%, #203d88 100%);
+      color: #fff;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      right: -40px;
+      bottom: -40px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      margin: 0 0 28px;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    .highlights {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .highlight {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.98rem;
+    }
+
+    .badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(142, 197, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-weight: 700;
+    }
+
+    .form-wrap {
+      padding: 40px 36px 42px;
+      background: var(--panel);
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
       margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .tag {
+      background: var(--panel-soft);
+      color: var(--primary-dark);
+      border: 1px solid rgba(45, 91, 255, 0.18);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(45, 91, 255, 0.8);
+      box-shadow: 0 0 0 4px rgba(45, 91, 255, 0.08);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      align-items: flex-start;
+    }
+
+    .checkbox input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+    }
+
+    .submit {
+      margin-top: 8px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 14px 28px rgba(45, 91, 255, 0.24);
+    }
+
+    .submit:hover {
+      transform: translateY(-1px);
+    }
+
+    .meta {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .status {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .form-wrap {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      .title-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>
-    Hello, World!<<br>
-    안녕하세요!
-  </h1>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">LIVE WEBINAR</div>
+      <h1>AI 시대, <br>성장 전략을 바꾸는 법</h1>
+      <p class="lead">
+        마케팅, 운영, 고객 경험까지 한 번에 바꾸는 AI 활용 전략을 공유합니다.
+        현업에서 바로 적용 가능한 실전 사례와 실행 팁을 함께 알아보세요.
+      </p>
+
+      <div class="highlights">
+        <div class="highlight">
+          <span class="badge">✓</span>
+          <span>실무 중심의 AI 활용 사례 7가지</span>
+        </div>
+        <div class="highlight">
+          <span class="badge">✓</span>
+          <span>서비스 성장을 위한 실행 체크리스트</span>
+        </div>
+        <div class="highlight">
+          <span class="badge">✓</span>
+          <span>참석자 전용 Q&amp;A 세션 제공</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-wrap">
+      <div class="title-row">
+        <h2>웨비나 신청</h2>
+        <span class="tag">2026.11.20 / 19:00</span>
+      </div>
+
+      <form>
+        <div class="row">
+          <div class="field">
+            <label for="name">이름</label>
+            <input id="name" type="text" placeholder="홍길동" required>
+          </div>
+          <div class="field">
+            <label for="job">직무</label>
+            <select id="job" required>
+              <option value="">선택해주세요</option>
+              <option>마케팅</option>
+              <option>사업기획</option>
+              <option>운영</option>
+              <option>디자인</option>
+              <option>개발</option>
+              <option>기타</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">이메일</label>
+          <input id="email" type="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="company">회사/소속</label>
+          <input id="company" type="text" placeholder="회사명 또는 팀명">
+        </div>
+
+        <div class="field">
+          <label for="goal">관심 분야</label>
+          <textarea id="goal" placeholder="예: AI 기반 마케팅 자동화, 고객 경험 개선, 팀 생산성 향상"></textarea>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          <span>웨비나 일정 및 관련 정보를 이메일로 받는 것에 동의합니다.</span>
+        </label>
+
+        <button class="submit" type="submit">신청 완료</button>
+      </form>
+
+      <div class="meta">
+        <span>참석비: 무료</span>
+        <span class="status">선착순 200명</span>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
